@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ==================================================================
+     TITRE DE L'ONGLET DU NAVIGATEUR + DESCRIPTION POUR GOOGLE
+     À modifier si le nom, l'activité ou l'accroche SEO change.
+     ================================================================== -->
+<title>Colibri Energy — Ingénierie photovoltaïque & électrique</title>
+<meta name="description" content="Colibri Energy accompagne ses clients sur l'ensemble de leurs projets électriques et photovoltaïques : études, chiffrage, maîtrise d'œuvre et suivi de travaux, avec un seul interlocuteur de l'étude à la mise en service.">
+
+<!-- Icône affichée dans l'onglet du navigateur et sur mobile (favicons) -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+
+<!-- Polices Google Fonts : Space Grotesk (titres), IBM Plex Sans (texte), IBM Plex Mono (labels techniques) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Toute la mise en forme visuelle est dans ce fichier -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ==================================================================
+     EN-TÊTE / MENU DE NAVIGATION (barre du haut, fixe au scroll)
+     - Logo + nom de la société à gauche
+     - Liens de menu + numéro de téléphone à droite
+     - Bouton "hamburger" (nav-toggle) visible seulement en mobile
+     ================================================================== -->
+<header class="site-header">
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <img src="assets/logo.png" alt="Colibri Energy">
+      <span class="brand-name">Colibri Energy<small>Ingénierie photovoltaïque</small></span>
+    </a>
+
+    <!-- Liens du menu : modifier le texte ou l'ordre ici -->
+    <nav class="main-nav" id="main-nav">
+      <a href="#domaines">Domaines d'intervention</a>
+      <a href="#colibri">Colibri Energy</a>
+      <a href="#contact">Contact</a>
+      <!-- Numéro de téléphone cliquable (format tel: sans espaces) -->
+      <a href="tel:+33656769647" class="btn btn-primary">06 56 76 96 47</a>
+    </nav>
+
+    <!-- Bouton menu mobile (le JS dans script.js gère l'ouverture/fermeture) -->
+    <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ==================================================================
+       SECTION 1 — HERO (bandeau d'accueil, premier écran visible)
+       - Accroche principale (h1) + phrase d'intro (hero-lede)
+       - 2 boutons d'action (hero-cta)
+       - 3 chiffres clés (hero-stats)
+       - Visuel à droite : logo animé entouré de cercles (hero-visual)
+       ================================================================== -->
+  <section class="hero">
+    <div class="blueprint-grid" aria-hidden="true"></div> <!-- quadrillage décoratif en fond -->
+    <div class="wrap">
+      <div class="hero-copy">
+
+        <!-- Petit texte au-dessus du titre -->
+        <span class="eyebrow">Études · Chiffrage · Maîtrise d'œuvre</span>
+
+        <!-- TITRE PRINCIPAL DU SITE : le texte dans <em> apparaît en vert -->
+        <h1>Un seul interlocuteur, de l'étude <em>à la mise en service.</em></h1>
+
+        <!-- Paragraphe d'introduction sous le titre -->
+        <p class="hero-lede">
+          Colibri Energy accompagne ses clients sur l'ensemble de leurs projets électriques et
+          photovoltaïques, avec la même exigence technique à chaque étape — du dimensionnement
+          au pilotage de chantier.
+        </p>
+
+        <!-- Boutons d'action : le 1er va vers #contact, le 2e vers #domaines -->
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Discuter d'un projet</a>
+          <a href="#domaines" class="btn btn-ghost">Voir nos domaines</a>
+        </div>
+
+        <!-- 3 chiffres clés : modifier le nombre (strong) et sa légende (span) -->
+        <div class="hero-stats">
+          <div>
+            <strong>5</strong>
+            <span>domaines d'intervention</span>
+          </div>
+          <div>
+            <strong>1</strong>
+            <span>interlocuteur, du début à la fin</span>
+          </div>
+          <div>
+            <strong>ETU→LIV</strong>
+            <span>un parcours projet complet</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visuel décoratif à droite du hero : logo + cercles + points animés -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="ring"></div>
+        <div class="ring ring-2"></div>
+        <img src="assets/logo.png" alt="" class="logo-mark">
+        <span class="spark-dot a"></span>
+        <span class="spark-dot b"></span>
+        <span class="spark-dot c"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SECTION 2 — BANDE DE CITATION (fond bleu marine foncé)
+       Reprend le slogan du logo. Le mot dans <span> ressort en couleur or.
+       ================================================================== -->
+  <section class="mission">
+    <div class="wrap">
+      <blockquote>
+        « Par notre <span>énergie</span>, nous donnons vie à vos projets. »
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SECTION 3 — DOMAINES D'INTERVENTION (id="domaines")
+       - section-head : titre + sous-titre de la section
+       - timeline-track : les 4 étapes ETU / CHF / MOE / LIV, reliées par
+         un trait en pointillés (voir .timeline-track::before dans le CSS)
+       - domain-extra : la 5e prestation (Fibre optique), mise à part
+         car ce n'est pas une étape du parcours mais un service à côté
+       Pour AJOUTER ou RETIRER une étape : dupliquer/supprimer un bloc
+       <article class="step">...</article> et ajuster le numéro (01, 02...)
+       ================================================================== -->
+  <section id="domaines">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Domaines d'intervention</span>
+        <h2>De la première note de calcul à la mise en service</h2>
+        <p>Quatre étapes qui structurent chaque projet, et une expertise complémentaire en fibre optique.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-track">
+
+          <!-- Étape 01 -->
+          <article class="step reveal">
+            <div class="step-index">01</div>
+            <span class="step-code">ETU — Études électriques</span>
+            <h3>Dimensionnement & plans d'exécution</h3>
+            <p>Dimensionnement, notes de calcul, schémas et plans d'exécution qui posent les bases techniques du projet.</p>
+          </article>
+
+          <!-- Étape 02 -->
+          <article class="step reveal">
+            <div class="step-index">02</div>
+            <span class="step-code">CHF — Chiffrage & appels d'offres</span>
+            <h3>Estimation & rédaction de CCTP</h3>
+            <p>Estimation budgétaire, rédaction de CCTP et analyse des offres pour sécuriser le budget du projet.</p>
+          </article>
+
+          <!-- Étape 03 -->
+          <article class="step reveal">
+            <div class="step-index">03</div>
+            <span class="step-code">MOE — Électricité & photovoltaïque</span>
+            <h3>Pilotage opérationnel du chantier</h3>
+            <p>Maîtrise d'œuvre : pilotage opérationnel, respect des délais, de la qualité et de la sécurité.</p>
+          </article>
+
+          <!-- Étape 04 -->
+          <article class="step reveal">
+            <div class="step-index">04</div>
+            <span class="step-code">LIV — Livraison clés en main</span>
+            <h3>De l'étude à la mise en service</h3>
+            <p>Un accompagnement continu, de la phase étude jusqu'à la mise en service, sur un seul interlocuteur.</p>
+          </article>
+
+        </div>
+
+        <!-- 5e prestation, affichée à part sous la frise (bordure gauche or) -->
+        <div class="domain-extra reveal">
+          <div>
+            <span class="step-code">FO · D2/D3 — Fibre optique</span>
+            <h3> — Interventions sur les segments de raccordement (D2) et de distribution (D3).</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SECTION 4 — "COLIBRI ENERGY" / VALEURS (id="colibri")
+       3 cartes présentant les points forts de l'entreprise.
+       Pour AJOUTER une carte : dupliquer un bloc .value-card
+       (attention : la grille values-grid est prévue pour 3 colonnes,
+       si tu passes à 4 il faudra ajuster le CSS grid-template-columns)
+       ================================================================== -->
+  <section id="colibri">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Colibri Energy</span>
+        <h2>Une exigence technique à chaque étape</h2>
+        <p>Comme le colibri, précision du geste et énergie déployée au bon endroit, au bon moment.</p>
+      </div>
+
+      <div class="values-grid reveal">
+        <!-- Carte 1 -->
+        <div class="value-card">
+          <span class="eyebrow">Interlocuteur unique</span>
+          <h3>Un seul suivi, du début à la fin</h3>
+          <p>Études, chiffrage, maîtrise d'œuvre et livraison sont pilotés par la même équipe, pour éviter les ruptures de suivi entre intervenants.</p>
+        </div>
+        <!-- Carte 2 -->
+        <div class="value-card">
+          <span class="eyebrow">Rigueur technique</span>
+          <h3>Des livrables d'ingénierie exigeants</h3>
+          <p>Notes de calcul, schémas d'exécution et CCTP construits avec la même rigueur, quelle que soit la taille du projet.</p>
+        </div>
+        <!-- Carte 3 -->
+        <div class="value-card">
+          <span class="eyebrow">Terrain & pilotage</span>
+          <h3>Sécurité, délais, qualité</h3>
+          <p>Un pilotage opérationnel présent sur le terrain, garant du respect des délais, de la qualité et de la sécurité.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SECTION 5 — CONTACT (id="contact")
+       - Colonne gauche : texte + téléphone + email (contact-list)
+       - Colonne droite : formulaire (ouvre la messagerie de l'utilisateur
+         via mailto: — voir script.js, PAS d'envoi automatique par serveur)
+       Pour changer le téléphone ou l'email : les modifier aux 2 endroits
+       (ici ET dans le mailto de script.js, ET dans le header/footer)
+       ================================================================== -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="contact-copy reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Parlons de votre projet</h2>
+        <p>Étude électrique, dimensionnement photovoltaïque, chiffrage ou suivi de chantier —
+          décrivez votre besoin, nous revenons vers vous rapidement.</p>
+
+        <div class="contact-list">
+          <!-- Téléphone cliquable -->
+          <a href="tel:+33656769647">
+            <span class="tag">Tél.</span> 06 56 76 96 47
+          </a>
+          <!-- Email cliquable -->
+          <a href="mailto:contact@colibri-enr.com">
+            <span class="tag">Email</span> contact@colibri-enr.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Formulaire : à la soumission, script.js ouvre le logiciel mail
+           de l'utilisateur avec un message pré-rempli (pas de back-end) -->
+      <form class="contact-form reveal" id="contact-form">
+        <div class="field">
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="message">Votre projet</label>
+          <textarea id="message" name="message" required placeholder="Décrivez brièvement votre besoin (type de projet, échéance...)"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+        <p class="form-note">Ce formulaire ouvre votre messagerie pour envoyer directement à contact@colibri-enr.com.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==================================================================
+     PIED DE PAGE — logo + copyright à gauche, liens rapides à droite
+     L'année (id="year") est mise à jour automatiquement par script.js
+     ================================================================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-brand">
+      <img src="assets/logo.png" alt="">
+      <span>© <span id="year"></span> Colibri Energy — Ingénierie photovoltaïque</span>
+    </div>
+    <div class="footer-links">
+      <a href="#domaines">Domaines</a>
+      <a href="#colibri">Colibri Energy</a>
+      <a href="mailto:contact@colibri-enr.com">contact@colibri-enr.com</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Toutes les interactions (menu mobile, animations au scroll, formulaire) -->
+<script src="script.js"></script>
+</body>
+</html>

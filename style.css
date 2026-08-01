@@ -1,0 +1,778 @@
+/* ============================================================
+   COLIBRI ENERGY — feuille de style
+   Palette dérivée du logo : navy #0B2436, vert #0F8A3E, or #F5C400
+   ============================================================ */
+
+/* Toutes les couleurs et polices du site sont définies UNE SEULE FOIS ici.
+   Pour changer une couleur partout sur le site, il suffit de modifier
+   sa valeur ci-dessous (pas besoin de chercher dans tout le fichier). */
+:root {
+  --navy: #0b2436;        /* bleu marine foncé — titres, boutons, fond bande citation */
+  --navy-soft: #16344a;   /* variante plus claire du navy — liens du menu */
+  --green: #0f8a3e;       /* vert principal — accents, mot "à la mise en service" */
+  --green-deep: #0a5c2a;  /* vert foncé — petits libellés (eyebrows), survol boutons */
+  --gold: #f5c400;        /* or/jaune — détails (soulignés, puces, points animés) */
+  --bg: #f4f5ef;          /* fond général du site (blanc cassé verdâtre) */
+  --paper: #ffffff;       /* fond des cartes / formulaire (blanc pur) */
+  --ink: #0b2436;         /* couleur du texte courant */
+  --ink-soft: #4a5c60;    /* couleur du texte secondaire (paragraphes, légendes) */
+  --line: #dbe1d6;        /* traits fins / bordures discrètes */
+  --line-strong: #b9c4b6; /* bordures un peu plus marquées (survol, pointillés) */
+
+  /* Polices : display = titres, body = texte courant, mono = petits libellés techniques */
+  --font-display: "Space Grotesk", "IBM Plex Sans", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+
+  --radius: 4px;    /* arrondi des boutons/cartes */
+  --wrap: 1120px;    /* largeur maximale du contenu (voir .wrap plus bas) */
+}
+
+/* ============================================================
+   RÉGLAGES DE BASE (appliqués à tout le site)
+   ============================================================ */
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--navy);
+  margin: 0;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0; }
+
+/* Conteneur central utilisé dans CHAQUE section pour limiter la largeur
+   du contenu et le centrer (voir --wrap dans :root ci-dessus) */
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* Petit libellé au-dessus des titres, avec un tiret or devant
+   (ex: "DOMAINES D'INTERVENTION", "CONTACT"...) */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--gold);
+  display: inline-block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+/* Subtle electrical-schematic grid used as an atmosphere layer */
+.blueprint-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(11,36,54,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11,36,54,0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+
+/* ============================================================
+   EN-TÊTE / MENU (barre du haut, correspond à <header class="site-header">)
+   ============================================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244, 245, 239, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 78px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand img {
+  height: 42px;
+  width: auto;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  color: var(--navy);
+  line-height: 1.15;
+}
+
+.brand-name small {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.main-nav a:not(.btn) {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--navy-soft);
+  position: relative;
+  padding: 4px 0;
+}
+
+.main-nav a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: right 0.25s ease;
+}
+
+.main-nav a:not(.btn):hover::after,
+.main-nav a:not(.btn):focus-visible::after {
+  right: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 11px 20px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--navy);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--green-deep); }
+
+.btn-ghost {
+  border-color: var(--line-strong);
+  color: var(--navy);
+}
+.btn-ghost:hover { border-color: var(--navy); }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.nav-toggle span,
+.nav-toggle span::before,
+.nav-toggle span::after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--navy);
+  position: relative;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.nav-toggle span::before { position: absolute; top: -6px; }
+.nav-toggle span::after { position: absolute; top: 6px; }
+
+/* ============================================================
+   HERO — bandeau d'accueil (correspond à <section class="hero">)
+   Titre principal, texte d'intro, boutons, chiffres clés + visuel logo
+   ============================================================ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 96px 0 88px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero .wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.hero-copy .eyebrow { margin-bottom: 22px; }
+
+.hero h1 {
+  font-size: clamp(2.3rem, 4vw, 3.4rem);
+  font-weight: 600;
+  max-width: 15ch;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.hero-lede {
+  margin-top: 22px;
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  line-height: 1.6;
+}
+
+.hero-cta {
+  margin-top: 34px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-stats {
+  margin-top: 46px;
+  display: flex;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+
+.hero-stats div {
+  border-left: 2px solid var(--gold);
+  padding-left: 14px;
+}
+
+.hero-stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--navy);
+}
+
+.hero-stats span {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+}
+
+/* Visuel décoratif à droite du hero : logo + 2 cercles + 3 points animés
+   (correspond à <div class="hero-visual">) */
+.hero-visual {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-visual .ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed var(--line-strong);
+}
+
+.hero-visual .ring.ring-2 {
+  inset: 13%;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.hero-visual .logo-mark {
+  position: relative;
+  width: 58%;
+  filter: drop-shadow(0 18px 30px rgba(11,36,54,0.14));
+}
+
+.hero-visual .spark-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 6px rgba(245,196,0,0.18);
+  animation: pulse 2.6s ease-in-out infinite;
+}
+.spark-dot.a { top: 8%; left: 18%; }
+.spark-dot.b { bottom: 12%; right: 12%; animation-delay: 0.9s; }
+.spark-dot.c { bottom: 30%; left: 4%; animation-delay: 1.7s; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+/* ============================================================
+   GABARIT COMMUN À TOUTES LES SECTIONS
+   (espacement vertical + bloc titre "eyebrow + h2 + p" en haut de section)
+   ============================================================ */
+
+section { padding: 92px 0; }
+
+/* Bloc "titre de section" réutilisé en haut de Domaines, Colibri Energy, Contact */
+.section-head {
+  max-width: 640px;
+  margin-bottom: 56px;
+}
+
+.section-head h2 {
+  margin-top: 18px;
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+  font-weight: 600;
+}
+
+.section-head p {
+  margin-top: 16px;
+  color: var(--ink-soft);
+  font-size: 16.5px;
+  max-width: 56ch;
+}
+
+/* ============================================================
+   BANDE DE CITATION fond bleu marine (correspond à <section class="mission">)
+   ============================================================ */
+
+.mission {
+  background: var(--navy);
+  color: #eef2ee;
+  padding: 64px 0;
+}
+
+.mission .wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.mission blockquote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.8vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 34ch;
+  text-align: center;
+}
+
+.mission blockquote span { color: var(--gold); }
+
+/* ============================================================
+   DOMAINES D'INTERVENTION — section id="domaines"
+   La frise ETU→CHF→MOE→LIV (.timeline-track) + le trait pointillé
+   qui les relie (::before) + la carte Fibre optique à part (.domain-extra)
+   ============================================================ */
+
+.timeline {
+  position: relative;
+}
+
+/* Grille des 4 étapes. Pour changer le nombre d'étapes affichées par
+   ligne, ajuster "repeat(4, 1fr)" (ex: repeat(3, 1fr) pour 3 colonnes) */
+.timeline-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  counter-reset: step;
+}
+
+/* Trait pointillé horizontal qui traverse les 4 cartes en arrière-plan,
+   pour donner l'effet "schéma électrique / frise de parcours projet" */
+.timeline-track::before {
+  content: "";
+  position: absolute;
+  top: 27px;
+  left: 6%;
+  right: 6%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    to right,
+    var(--line-strong) 0 8px,
+    transparent 8px 14px
+  );
+  z-index: 0;
+}
+
+/* Carte d'une étape individuelle (01 ETU, 02 CHF, 03 MOE, 04 LIV) */
+.step {
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 22px 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(11,36,54,0.08);
+  border-color: var(--line-strong);
+}
+
+.step-index {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--navy);
+  margin-bottom: 18px;
+}
+
+.step-code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--green-deep);
+  text-transform: uppercase;
+}
+
+.step h3 {
+  margin-top: 8px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.step p {
+  margin-top: 10px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* Carte "Fibre optique" affichée sous la frise, avec une bordure gauche
+   or pour la distinguer visuellement des 4 étapes du parcours */
+.domain-extra {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+}
+
+.domain-extra .step-code { color: var(--navy); }
+
+.domain-extra h3 {
+  font-size: 16.5px;
+  font-weight: 600;
+  display: inline;
+}
+
+.domain-extra p {
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: 14.5px;
+}
+
+/* ============================================================
+   COLIBRI ENERGY / VALEURS — section id="colibri"
+   Les 3 cartes de valeurs (correspond à <div class="values-grid">)
+   ============================================================ */
+
+/* Pour passer de 3 à 4 cartes, changer "repeat(3, 1fr)" en "repeat(4, 1fr)" */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.value-card {
+  background: var(--paper);
+  padding: 32px 28px;
+}
+
+.value-card .eyebrow { margin-bottom: 16px; }
+
+.value-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.value-card p {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   CONTACT — section id="contact"
+   Colonne gauche (texte + tél/email) + colonne droite (formulaire)
+   ============================================================ */
+
+.contact {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.contact .wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.contact-copy h2 {
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+  font-weight: 600;
+  margin-top: 18px;
+  max-width: 16ch;
+}
+
+.contact-copy p {
+  margin-top: 16px;
+  color: var(--ink-soft);
+  max-width: 42ch;
+}
+
+.contact-list {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-list a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--navy);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  transition: color 0.15s ease, padding-left 0.15s ease;
+}
+
+.contact-list a:hover {
+  color: var(--green-deep);
+  padding-left: 6px;
+}
+
+.contact-list .tag {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  width: 60px;
+  flex-shrink: 0;
+}
+
+.contact-form {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px;
+}
+
+.contact-form .field {
+  margin-bottom: 18px;
+}
+
+.contact-form label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 7px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: var(--ink);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(15,138,62,0.12);
+}
+
+.contact-form textarea { resize: vertical; min-height: 110px; }
+
+.contact-form .btn { width: 100%; justify-content: center; margin-top: 4px; }
+
+.form-note {
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+/* ============================================================
+   PIED DE PAGE (correspond à <footer class="site-footer">)
+   ============================================================ */
+
+.site-footer {
+  padding: 40px 0;
+}
+
+.site-footer .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.footer-brand img { height: 22px; }
+
+.footer-links {
+  display: flex;
+  gap: 22px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.footer-links a:hover { color: var(--navy); }
+
+/* ============================================================
+   ANIMATION D'APPARITION AU DÉFILEMENT
+   Chaque élément avec class="reveal" démarre invisible/décalé, puis
+   script.js ajoute la classe "is-visible" quand il entre dans l'écran
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   VERSION MOBILE / TABLETTE
+   Deux paliers : sous 900px (tablette) et sous 680px (téléphone,
+   avec en plus le menu qui devient un panneau plein écran)
+   ============================================================ */
+
+/* --- Tablette (écran < 900px) --- */
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .hero-visual { max-width: 340px; margin: 0 auto; order: -1; }
+  .timeline-track { grid-template-columns: repeat(2, 1fr); }
+  .timeline-track::before { display: none; }
+  .values-grid { grid-template-columns: 1fr; }
+  .contact .wrap { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* --- Téléphone (écran < 680px) --- */
+@media (max-width: 680px) {
+  /* Le menu devient un panneau qui glisse depuis la droite (voir .open
+     ajoutée/retirée par script.js au clic sur le bouton hamburger) */
+  .main-nav { position: fixed; inset: 78px 0 0 0; background: var(--bg);
+    flex-direction: column; align-items: flex-start; padding: 28px;
+    gap: 22px; transform: translateX(100%); transition: transform 0.25s ease;
+    border-top: 1px solid var(--line); }
+  .main-nav.open { transform: translateX(0); }
+  .nav-toggle { display: flex; }
+  .timeline-track { grid-template-columns: 1fr; }
+  section { padding: 64px 0; }
+  .hero { padding: 56px 0 64px; }
+  .domain-extra { flex-direction: column; align-items: flex-start; }
+}
